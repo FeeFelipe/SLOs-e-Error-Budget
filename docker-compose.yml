@@ -1,0 +1,37 @@
+version: "3.9"
+
+services:
+  api:
+    build: ./services/api
+    container_name: api-demo
+    ports:
+      - "8080:8080"
+    environment:
+      - APP_PORT=8080
+      # probabilidade de sucesso para /simulate (0.0 a 1.0)
+      - SIM_SUCCESS_PROB=0.97
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8080/health"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+  error-monitor:
+    build: ./tools/error_monitor
+    container_name: error-monitor
+    depends_on:
+      - api
+    environment:
+      # URL alvo (use /simulate para controlar taxa de erro)
+      - TARGET_URL=http://api:8080/simulate
+      # requisições por minuto
+      - RPM=60
+      # duração do teste em segundos
+      - DURATION=600
+      # janela deslizante em segundos
+      - WINDOW=300
+      # SLO em porcentagem (ex.: 99.5)
+      - SLO=99.5
+      # modo verbose (true/false)
+      - VERBOSE=false
+    command: ["/bin/sh", "/app/entrypoint.sh"]
