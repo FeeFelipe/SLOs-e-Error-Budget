@@ -84,6 +84,16 @@ O container `error-monitor` inicia automaticamente e realiza medições conforme
 | `WINDOW` | Janela deslizante (s) | `300` |
 | `SLO` | Meta de sucesso (%) | `99.5` |
 | `VERBOSE` | Log detalhado | `true/false` |
+\
+> **Como as variáveis se conectam?**
+> - `TARGET_URL` define para qual endpoint o monitor envia as requisições.
+> - `RPM` controla quantas requisições por minuto são feitas para a API.
+> - `DURATION` é o tempo total do teste, em segundos.
+> - `WINDOW` define o tamanho da janela deslizante: apenas as últimas `WINDOW` respostas são usadas para calcular a taxa de sucesso/erro e o burn rate. Por exemplo, se `WINDOW=300` e `RPM=60`, a janela cobre os últimos 5 minutos.
+> - `SLO` é a meta de sucesso (%). Se a taxa de sucesso na janela cair abaixo desse valor, o monitor gera alerta de risco/violação.
+> - `VERBOSE` ativa logs detalhados de cada requisição.
+>
+> Assim, o monitor simula o consumo real de uma API, calcula os indicadores de SLO em tempo real e alerta rapidamente sobre mudanças recentes no comportamento do sistema, sempre usando apenas as últimas respostas da janela deslizante.
 
 ---
 
