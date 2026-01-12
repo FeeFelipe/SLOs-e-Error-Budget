@@ -49,6 +49,8 @@ cd SLOs-e-Error-Budget
 docker compose up --build -d
 ```
 
+> **Observação:** Todas as variáveis de ambiente dos serviços estão centralizadas no arquivo `docker-compose.yml`. Não é necessário (nem recomendado) usar um arquivo `.env` neste laboratório. Para experimentar diferentes cenários, altere os valores diretamente no bloco `environment` do serviço desejado e reinicie os containers.
+
 ---
 
 ### 2️⃣ API Demo disponível
