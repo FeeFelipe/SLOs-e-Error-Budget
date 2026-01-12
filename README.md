@@ -44,9 +44,9 @@ slo-error-budget-lab/
 ### 1️⃣ Clonar e construir
 
 ```bash
-git clone https://github.com/seu-repo/slo-error-budget-lab.git
-cd slo-error-budget-lab
-docker compose up --build
+git clone https://github.com/FeeFelipe/SLOs-e-Error-Budget.git
+cd SLOs-e-Error-Budget
+docker compose up --build -d
 ```
 
 ---
@@ -156,6 +156,12 @@ environment:
 3. Experimentar diferentes **SLIs/SLOs por endpoint**.  
 
 ---
+
+## 🛠️ Dicas e Troubleshooting
+
+Se você encontrar problemas ao subir o ambiente (ex: erro de build no serviço `error-monitor`), verifique se a pasta `tools/error_monitor/` e seus arquivos (`Dockerfile`, `entrypoint.sh`, `error_budget_monitor.py`) estão presentes. Caso contrário, solicite ao instrutor ou baixe novamente o repositório.
+
+Este laboratório foi desenvolvido para fins educacionais, permitindo que você experimente conceitos de SLO, Error Budget e Burn Rate de forma prática. Explore, quebre, ajuste parâmetros e observe o impacto nos indicadores!
 
 ## 🧑‍💻 Autor
 **FIAP | DevOps & SRE Lab**  
